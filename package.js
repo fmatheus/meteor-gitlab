@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'tunguska:imgur',
+  name: 'tomsen-san:oauth2-gitlab',
   version: '0.0.1',
-  summary: 'OAuth handler for Imgur',
-  git: 'https://github.com/robfallows/tunguska-imgur',
+  summary: 'OAuth2 handler for Gitlab',
+  git: 'https://github.com/tomsen-san/meteor-gitlab',
   documentation: 'README.md'
 });
 
@@ -16,12 +16,12 @@ Package.onUse(function(api) {
   api.use(['underscore', 'service-configuration'], ['client', 'server']);
   api.use(['random', 'templating'], 'client');
 
-  api.export('Imgur');
+  api.export('Gitlab');
 
   api.addFiles(
-    ['imgur_configure.html', 'imgur_configure.js'],
+    ['gitlab_configure.html', 'gitlab_configure.js'],
     'client');
 
-  api.addFiles('imgur_server.js', 'server');
-  api.addFiles('imgur_client.js', 'client');
+  api.addFiles('gitlab_server.js', 'server');
+  api.addFiles('gitlab_client.js', 'client');
 });
