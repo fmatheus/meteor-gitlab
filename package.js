@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'tomsen-san:oauth2-gitlab',
+  name: 'tomsen:oauth2-gitlab',
   version: '0.0.1',
   summary: 'OAuth2 handler for Gitlab',
   git: 'https://github.com/tomsen-san/meteor-gitlab',
