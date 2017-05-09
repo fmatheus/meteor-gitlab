@@ -11,7 +11,8 @@ Gitlab = {};
  * Called from accounts-gitlab.
  *
  * @param {Object}    options                             Optional
- * @param {Function}  credentialRequestCompleteCallback   Callback function to call on completion. Takes one argument, credentialToken on success, or Error on error.
+ * @param {Function}  credentialRequestCompleteCallback   Callback function to call on completion. 
+ *                    Takes one argument, credentialToken on success, or Error on error.
  */
 Gitlab.requestCredential = function(options, credentialRequestCompleteCallback) {
   /**
@@ -42,6 +43,8 @@ Gitlab.requestCredential = function(options, credentialRequestCompleteCallback) 
    */
   const credentialToken = Random.secret();
   const loginStyle = OAuth._loginStyle('gitlab', config, options);
+  const redirectUri = Meteor.absoluteUrl() + '_oauth/gitlab';
+
 
   /**
    * Gitlab requires response_type and client_id
@@ -49,7 +52,9 @@ Gitlab.requestCredential = function(options, credentialRequestCompleteCallback) 
    */
   const loginUrl = config.gitlabInstanceUrl +'/oauth/authorize' +
     '?response_type=code' +
+    '&redirect_uri=' + redirectUri +
     '&client_id=' + config.clientId +
+    '&scope=' + config.scope + 
     '&state=' + OAuth._stateParam(loginStyle, credentialToken);
 
   /**

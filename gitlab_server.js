@@ -47,7 +47,7 @@ OAuth.registerService('gitlab', 2, null, function(query) {
 
   /**
    * Get the token and username (Meteor handles the underlying authorization flow).
-   * Note that the username comes from from this request in Gitlab.
+   * Note that the username comes from this request in Gitlab.
    */
   const response = getTokens(config, query);
   const accessToken = response.accessToken;
@@ -61,8 +61,7 @@ OAuth.registerService('gitlab', 2, null, function(query) {
   */
   const identity = _.extend(
     {username},
-    getAccount(config, username, accessToken),
-    getSettings(config, username, accessToken)
+    getAccount(config, username, accessToken)
   );
 
   /**
@@ -83,8 +82,11 @@ OAuth.registerService('gitlab', 2, null, function(query) {
   if (response.refreshToken) {
     serviceData.refreshToken = response.refreshToken;
   }
-  _.extend(serviceData, _.pick(identity, Gitlab.whitelistedFields));
+  _.extend(serviceData, _.pick(identity, Gitlab.whitelistedFields ));
 
+
+
+  
   /**
    * Return the serviceData object along with an options object containing
    * the initial profile object with the username.
@@ -123,7 +125,7 @@ OAuth.registerService('gitlab', 2, null, function(query) {
 const getTokens = function(config, query) {
 
   const endpoint = config.gitlabInstanceUrl + '/oauth/token';
-
+  const redirectUri = Meteor.absoluteUrl() + '_oauth/gitlab';
   /**
    * Attempt the exchange of code for token
    */
@@ -135,7 +137,8 @@ const getTokens = function(config, query) {
           code: query.code,
           client_id: config.clientId,
           client_secret: OAuth.openSecret(config.secret),
-          grant_type: 'authorization_code'
+          grant_type: 'authorization_code',
+          redirect_uri: redirectUri
         }
       });
 
@@ -190,7 +193,7 @@ const getTokens = function(config, query) {
  */
 const getAccount = function(config, username, accessToken) {
 
-  const endpoint = config.gitlabInstanceUrl + `/api/v3/user/${username}`;
+  const endpoint = config.gitlabInstanceUrl + `/api/v4/user`;
   let accountObject;
 
 
@@ -201,7 +204,7 @@ const getAccount = function(config, username, accessToken) {
           Authorization: `Bearer ${accessToken}`
         }
       }
-    ).data.data;
+    ).data;
     return accountObject;
 
   } catch (err) {
