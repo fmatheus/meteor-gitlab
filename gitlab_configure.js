@@ -7,8 +7,8 @@ Template.configureLoginServiceDialogForGitlab.helpers({
 Template.configureLoginServiceDialogForGitlab.fields = function () {
   return [
     {property: 'gitlabInstanceUrl', label: 'Gitlab instance url'},
-    {property: 'scope', label: 'permission scope in Gitlab'},
-    {property: 'clientId', label: 'Client Id'},
-    {property: 'secret', label: 'Client Secret'}
+    {property: 'scope', label: 'Gitlab scope'},
+    {property: 'clientId', label: 'Application Id'},
+    {property: 'secret', label: 'Secret'}
   ];
 };
