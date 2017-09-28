@@ -15,9 +15,9 @@ See also the [complementary OAuth2 flow package](https://github.com/tomsen-san/m
 When using one of the accounts packages for meteor (accounts-ui) the package
 installs itself as one of the login handlers. The login panel offers to login
 using gitlab.
-In your gitlab instance the meteor app has to be registered. This creates an
+In your gitlab instance the meteor app has to be registered ([see here](https://docs.gitlab.com/ee/integration/oauth_provider.html)). This creates an
 application id and a secret. You are also required to select a scope of access
-for the client app. Recommendable is something like *read* if you only want to
+for the client app. Recommendable is something like *read_user* if you only want to
 read some basic data like username, name and maybe groups of a user.
 On the very first attempt to login with gitlab in your app
 a configuration form opens which accepts
