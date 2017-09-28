@@ -14,7 +14,7 @@ Gitlab.retrieveCredential = (credentialToken, credentialSecret) => {
 };
 
 /**
- * Define the fields we want. 
+ * Define the fields we want.
   *   id             {Integer}         The user's Gitlab id
  *   web_url        {String}          The account gitlab url
  *   name           {String}          The account 'real world' name
@@ -86,7 +86,7 @@ OAuth.registerService('gitlab', 2, null, function(query) {
 
 
 
-  
+
   /**
    * Return the serviceData object along with an options object containing
    * the initial profile object with the username.
@@ -213,5 +213,3 @@ const getAccount = function(config, username, accessToken) {
     });
   }
 };
-
-
