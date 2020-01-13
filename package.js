@@ -1,6 +1,6 @@
 Package.describe({
   name: 'tomsen:oauth2-gitlab',
-  version: '0.0.2',
+  version: '0.0.2-opendesign',
   summary: 'OAuth2 handler for Gitlab',
   git: 'https://github.com/tomsen-san/meteor-gitlab',
   documentation: 'README.md'
@@ -14,13 +14,9 @@ Package.onUse(function(api) {
   api.use('oauth', ['client', 'server']);
   api.use('http', ['server']);
   api.use(['underscore', 'service-configuration'], ['client', 'server']);
-  api.use(['random', 'templating'], 'client');
+  api.use(['random'], 'client');
 
   api.export('Gitlab');
-
-  api.addFiles(
-    ['gitlab_configure.html', 'gitlab_configure.js'],
-    'client');
 
   api.addFiles('gitlab_server.js', 'server');
   api.addFiles('gitlab_client.js', 'client');
